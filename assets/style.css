@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css?family=Exo:400,700");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Exo", sans-serif;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  background-color: rgb(255, 255, 255);
+  font-family: sans-serif;
+  border: 1px solid black;
+}
+
+.Home {
+  position: relative;
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    #00d4ff80 100%
+  );
+  min-height: calc(100vh - 60px);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 20px;
+  color: black;
+  box-shadow: 0px 0px 15px #0000004d;
+  border: 1px solid black;
+}
+
+.Home > h2 {
+  display: flex;
+  justify-content: space-around;
+  color: #000000;
+}
+
+.Home > div {
+  display: flex;
+  justify-content: center;
+  color: #000000;
+}
+
+.Home__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 350px) {
+  .Home__container {
+    justify-content: unset;
+  }
+}
+
+.PaletteList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px 50px;
+}
+
+@media (max-width: 1220px) {
+  .PaletteList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 840px) {
+  .PaletteList {
+    grid-template-columns: 1fr;
+  }
+}
+
+.PaletteCardItem,
+.PaletteListItem {
+  font-family: "Exo";
+  background: #ffffff4d;
+  border-radius: 10px;
+  padding: 10px;
+  width: 315px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.PaletteCardItem {
+  margin: 20px 0;
+  height: 150px;
+  width: auto;
+}
+
+@media (max-width: 400px) {
+  .PaletteCardItem,
+  .PaletteListItem {
+    width: 210px;
+    height: 180px;
+  }
+}
+
+.PaletteCardItem > div,
+.PaletteListItem > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.PaletteCardItem__flavor,
+.PaletteListItem__flavor {
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 100%;
+}
+
+.PaletteCardItem__description,
+.PaletteListItem__description {
+  font-size: 0.85em;
+}
+
+.PaletteCardItem__price,
+.PaletteListItem__price {
+  color: darkviolet;
+}
+
+.PaletteListItem__img {
+  height: 150px;
+  margin-right: -60px;
+}
+
+.Header {
+  border: 1px solid black;
+  width: calc(60vw - 60px);
+  height: 12vh;
+  align-items: center;
+  padding: 0 20vw;
+}
+
+.Header > .Header__container {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.Header > .Header__container > div {
+  display: flex;
+  align-items: center;
+  font-size: x-large;
+  background-color: #ffffff4d;
+  width: 16vw;
+  height: 7vh;
+  border-radius: 10px;
+  position: relative;
+}
+
+.Header > .Header__container > div > img {
+  position:absolute;
+  left: -25px;
+  top: -10px;
+  width: 70px;
+}
+
+.Header > .Header__container > div > h2 {
+  position:absolute;
+  left: 50px;
+}
+
+.Header > .Header__container > img {
+  width: 40px;
+}
