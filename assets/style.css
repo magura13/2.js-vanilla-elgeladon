@@ -156,17 +156,78 @@ html {
 }
 
 .Header > .Header__container > div > img {
-  position:absolute;
+  position: absolute;
   left: -25px;
   top: -10px;
   width: 70px;
 }
 
 .Header > .Header__container > div > h2 {
-  position:absolute;
+  position: absolute;
   left: 50px;
 }
 
 .Header > .Header__container > img {
   width: 40px;
+}
+
+.Modal__overlay {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000004d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Modal {
+  width: 30vw;
+  height: 30vh;
+  background-color: white;
+  border-radius: 20px;
+}
+
+.Modal__header {
+  width: calc(100% - 40px);
+  height: 7vh;
+  border-radius: 20px 20px 0 0;
+  background-color: #50c5ee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  user-select: none;
+}
+
+.Modal__header > span {
+  cursor: pointer;
+}
+
+.Modal__header > span:hover {
+  cursor: pointer;
+  color:  red;
+}
+
+.Modal__body {
+  width: calc(100% - 16px);
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Modal__body > input {
+  border: 1px solid #0000002d;
+  border-radius: 5px;
+  padding: 7px;
+  margin-top: 7px;
+}
+
+.button {
+  cursor: pointer;
+  border: 1px solid #000000;
+  border-radius: 3px;
 }

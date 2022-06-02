@@ -1,37 +1,7 @@
-// async function allPalettes() {
-//   //função responsável pela requisição GET assim que o receber a resposta com o .json() e gurdado em uma constante paltettes
-//   const response = await fetch("http://localhost:3000/palettes/getAllPalettes");
-
-//   const palettes = await response.json();
-
-//   palettes.forEach((element) => {
-//     //for.Each passa dentro de cada elemento da lista palettes e adiciona(.insertAdjacentHTML) ao final("beforeend")
-//     document.getElementById("paletteList").insertAdjacentHTML(
-//       "beforeend",
-//       `
-//       <div class="PaletteListItem">
-//           <div>
-//             <div class="PaletteListItem__flavor">
-//               ${element.flavor}
-//             </div>
-//             <div class="PaletteListItem__price">${element.price}</div>
-//             <div class="PaletteListItem__description">
-//             ${element.description}
-//             </div>
-//           </div>
-//           <img class="PaletteListItem__img"
-//           src=${element.img} alt="Paleta de
-//           Doce de Leite" />
-//         </div>
-//       `
-//     );
-//   });
-// }
-
-// allPalettes();
 //variáveis auxiliares
 
 const baseUrl = "http://localhost:3000";
+let paletteList = [];
 
 //separando as responsabilidades
 //*REQUISIÇÕES
@@ -39,6 +9,8 @@ const baseUrl = "http://localhost:3000";
 const searchAllPalettes = async () => {
   const response = await fetch("http://localhost:3000/palettes/getAllPalettes");
   const palettes = await response.json();
+
+  paletteList = palettes;
 
   return palettes;
 };
@@ -155,11 +127,14 @@ const printAllPalettes = async () => {
 printAllPalettes();
 
 const showPaletteById = async () => {
-  const id = document.getElementById("searchIdInput").value;
+  const flavor = document.getElementById("searchFlavorInput").value;
+
+  const chosenPalette = paletteList.find(
+    (palette) => palette.flavor === flavor
+  );
+  const id = chosenPalette._id;
 
   const palette = await searchIdPalettes(id);
-
-  console.log(palette);
 
   if (typeof palette === "string") {
     document.getElementById("paletteById").innerText = "Paleta não econtrada!";
@@ -180,4 +155,42 @@ const showPaletteById = async () => {
 </div>
   `;
   }
+};
+
+const showModal = () => {
+  document.getElementById("modal__overlay").style.display = "flex";
+};
+
+const closeModal = () => {
+  document.getElementById("modal__overlay").style.display = "none";
+};
+
+const insertNewPalette = async () => {
+  const flavor = document.getElementById("inputFlavor").value;
+  const description = document.getElementById("inputDescription").value;
+  const img = document.getElementById("inputImg").value;
+  const price = document.getElementById("inputPrice").value;
+
+  const palette = await createPalette(flavor, description, img, price);
+
+  document.getElementById("paletteList").insertAdjacentHTML(
+    "beforeend",
+    `
+        <div class="PaletteListItem">
+            <div>
+              <div class="PaletteListItem__flavor">
+                ${palette.flavor}
+              </div>
+              <div class="PaletteListItem__price">${palette.price}</div>
+              <div class="PaletteListItem__description">
+              ${palette.description}
+              </div>
+            </div>
+            <img class="PaletteListItem__img"
+            src=${palette.img} alt="Paleta ${element.flavor}" />
+          </div>
+        `
+  );
+
+  closeModal();
 };

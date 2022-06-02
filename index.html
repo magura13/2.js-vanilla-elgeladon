@@ -9,25 +9,54 @@
   </head>
   <body>
     <div class="Home">
-      <header class="Header">
+      <!-- <header class="Header">
         <div class="Header__container">
           <div>
             <img src="./assets/icons/logo.svg" alt="" />
             <h2>El Geladon</h2>
-  </div>
+          </div>
           <img src="./assets/icons/sacola.svg" alt="" />
         </div>
-      </header>
+      </header> -->
+      <div class="NewPalette__container">
+        <button class="button" type="button" onclick="showModal()">
+          Cadastrar Paleta
+        </button>
+      </div>
       <h2>Pesquisar Paleta</h2>
       <div class="Search__input">
-        <input id="searchIdInput" type="number" placeholder=""Digite o ID da
-        paleta e clique em escolher" type="text">
-        <button onclick="showPaletteById()">Pesquisar</button>
+        <input
+          id="searchFlavorInput"
+          placeholder="Digite o Nome da paleta e clique em escolher"
+          type="text"
+        />
+        <button class="button" onclick="showPaletteById()">Pesquisar</button>
       </div>
       <div class="Pallete__byid" id="paletteById"></div>
       <h2>Paletas Disponíveis:</h2>
       <div class="Home__container">
         <div class="PaletteList" id="paletteList"></div>
+        <div class="Modal__overlay" id="modal__overlay">
+          <div class="Modal">
+            <div class="Modal__header">
+              <h2>Cadastrar uma Paleta</h2>
+              <span onclick="closeModal()">X</span>
+            </div>
+            <div class="Modal__body">
+              <input id="inputFlavor" placeholder="Digite o sabor" />
+              <input id="inputDescription" placeholder="Digite a descrição" />
+              <input id="inputImg" placeholder="Digite o endereço da imagem" />
+              <input
+                id="inputPrice"
+                type="number"
+                placeholderr="Digite o preço"
+              />
+              <button class="button" onclick="insertNewPalette()">
+                Cadastrar
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./assets/script.js"></script>
