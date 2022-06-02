@@ -162,6 +162,11 @@ const showModal = () => {
 };
 
 const closeModal = () => {
+  document.getElementById("inputFlavor").value = "";
+  document.getElementById("inputDescription").value = "";
+  document.getElementById("inputImg").value = "";
+  document.getElementById("inputPrice").value = "";
+
   document.getElementById("modal__overlay").style.display = "none";
 };
 
