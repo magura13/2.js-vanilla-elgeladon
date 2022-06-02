@@ -155,6 +155,10 @@ const showPaletteById = async () => {
 </div>
   `;
   }
+
+  setTimeout(() => {
+    document.getElementById("paletteById").innerHTML = ""
+  }, "4000")
 };
 
 const showModal = () => {
