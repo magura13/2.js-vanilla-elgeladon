@@ -48,6 +48,42 @@
             </div>
           </div>
         </div>
+
+        <div class="Modal__overlay" id="modal__overlayEdit">
+          <div class="Modal">
+            <div class="Modal__header">
+              <h2>Atualizar Paleta</h2>
+              <span onclick="closeModalEdit()">X</span>
+            </div>
+            <div class="Modal__body">
+              <input id="inputFlavorEdit" />
+              <input id="inputDescriptionEdit" />
+              <input id="inputImgEdit" />
+              <input
+                id="inputPriceEdit"
+                type="number"
+              />
+              <button class="button" id="updateButton">
+                Atualizar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="Modal__overlayDelete" id="modal__overlay__delete">
+          <div class="Modal">
+            <div class="Modal__header">
+              <h2>DESEJA APAGAR?</h2>
+              <span onclick="closeModalDelete()">X</span>
+            </div>
+            <div class="Modal__body">
+              <button class="button" id="buttonYes" onclick="deleteModal()">
+                SIM
+              </button>
+              <button class="button" onclick="closeModalDelete()">NÃO</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <script src="./assets/script.js"></script>

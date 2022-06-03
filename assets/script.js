@@ -51,8 +51,6 @@ const createPalette = async (flavor, description, img, price) => {
 
   const newPalette = await response.json(); //recebo as informações transformando em json e criando o objeto
 
-  console.log(newPalette);
-
   return newPalette;
 };
 
@@ -76,8 +74,6 @@ const updatePalette = async (id, flavor, description, img, price) => {
 
   const updatedPalette = await response.json(); //recebo as informações transformando em json e criando o objeto
 
-  console.log(updatedPalette);
-
   return updatedPalette;
 };
 
@@ -90,9 +86,9 @@ const deletePalette = async (id) => {
   });
 
   if (!response.status === 204) {
-    return "Palette deleted successfully!";
+    return true;
   } else {
-    return "Palette not found!";
+    return false;
   }
 };
 
@@ -115,6 +111,10 @@ const printAllPalettes = async () => {
                   <div class="PaletteListItem__description">
                   ${element.description}
                   </div>
+                  <div>
+  <button class="button" onclick="showModalDelete('${element._id}')">APAGAR</button>
+  <button class="button" onclick="showModalEdit('${element._id}')">EDITAR</button>
+  </div>
                 </div>
                 <img class="PaletteListItem__img"
                 src=${element.img} alt="Paleta ${element.flavor}" />
@@ -149,6 +149,10 @@ const showPaletteById = async () => {
     <div class="PaletteListItem__description">
     ${palette.description}
     </div>
+    <div>
+  <button class="button" onclick="showModalDelete('${palette._id}')">APAGAR</button>
+  <button class="button" onclick="showModalEdit('${palette._id}')">EDITAR</button>
+  </div>
   </div>
   <img class="PaletteListItem__img"
   src=${palette.img} alt="Paleta ${palette.flavor}" />
@@ -157,12 +161,29 @@ const showPaletteById = async () => {
   }
 
   setTimeout(() => {
-    document.getElementById("paletteById").innerHTML = ""
-  }, "4000")
+    document.getElementById("paletteById").innerHTML = "";
+  }, "4000");
 };
 
 const showModal = () => {
   document.getElementById("modal__overlay").style.display = "flex";
+};
+
+const showModalDelete = (id) => {
+  document.getElementById("modal__overlay__delete").style.display = "flex";
+
+  const buttonYes = document.getElementById("buttonYes");
+
+  buttonYes.addEventListener("click", async () => {
+    const fact = await deletePalette(id);
+
+    if (fact) {
+      alert("Paleta Excluida!");
+    } else {
+      alert("Erro na exclusão!");
+    }
+    closeModalDelete();
+  });
 };
 
 const closeModal = () => {
@@ -174,6 +195,11 @@ const closeModal = () => {
   document.getElementById("modal__overlay").style.display = "none";
 };
 
+const closeModalDelete = () => {
+  document.getElementById("modal__overlay__delete").style.display = "none";
+  window.location.reload();
+};
+
 const insertNewPalette = async () => {
   const flavor = document.getElementById("inputFlavor").value;
   const description = document.getElementById("inputDescription").value;
@@ -181,6 +207,8 @@ const insertNewPalette = async () => {
   const price = document.getElementById("inputPrice").value;
 
   const palette = await createPalette(flavor, description, img, price);
+
+  closeModal();
 
   document.getElementById("paletteList").insertAdjacentHTML(
     "beforeend",
@@ -194,12 +222,42 @@ const insertNewPalette = async () => {
               <div class="PaletteListItem__description">
               ${palette.description}
               </div>
+              <div>
+  <button class="button" onclick="showModalDelete('${palette._id}')">APAGAR</button>
+  <button class="button" onclick="showModalEdit('${palette._id}')">EDITAR</button>
+  </div>
             </div>
             <img class="PaletteListItem__img"
-            src=${palette.img} alt="Paleta ${element.flavor}" />
+            src=${palette.img} alt="Paleta ${palette.flavor}" />
           </div>
         `
   );
+};
 
-  closeModal();
+const showModalEdit = (id) => {
+  document.getElementById("modal__overlayEdit").style.display = "flex";
+
+  const palette = paletteList.find((element) => element._id === id);
+
+  document.getElementById("inputFlavorEdit").value = palette.flavor;
+  document.getElementById("inputDescriptionEdit").value = palette.description;
+  document.getElementById("inputImgEdit").value = palette.img;
+  document.getElementById("inputPriceEdit").value = palette.price;
+
+  const updateButton = document.getElementById("updateButton");
+
+  updateButton.addEventListener("click", async () => {
+    const flavor = document.getElementById("inputFlavorEdit").value;
+    const description = document.getElementById("inputDescriptionEdit").value;
+    const img = document.getElementById("inputImgEdit").value;
+    const price = document.getElementById("inputPriceEdit").value;
+    const updated = await updatePalette(id, flavor, description, img, price);
+    closeModalEdit();
+  });
+  
+};
+
+const closeModalEdit = () => {
+  document.getElementById("modal__overlay__delete").style.display = "none";
+  window.location.reload();
 };

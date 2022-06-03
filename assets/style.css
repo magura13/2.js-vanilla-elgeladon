@@ -230,3 +230,15 @@ html {
   border: 1px solid #000000;
   border-radius: 3px;
 }
+
+.Modal__overlayDelete {
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #0000004d;
+  align-items: center;
+  justify-content: center;
+}
