@@ -26,3 +26,5 @@ Read By Id (0,6 pontos);
 Create (0,6 pontos);
 Update (0,6 pontos);
 Delete (0,6 pontos).
+
+Projeto criado sem foco na estilização do Front-End / Project made without focus on JSVanilla Front End
