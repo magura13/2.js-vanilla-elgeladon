@@ -5,6 +5,7 @@ let paletteList = [];
 
 //separando as responsabilidades
 //*REQUISIÇÕES
+//todo FAZER REQUISIÇÕES EM FORMA DE CLASSE NO PRÓXIMO PROJETO
 
 const searchAllPalettes = async () => {
   const response = await fetch("http://localhost:3000/palettes/getAllPalettes");
